@@ -11,7 +11,7 @@ router.get('/', async (req, res) => {
   } catch (err) {
     res.status(500).json(err.message);
   }
-});
+}); // done
 
 // get one product
 router.get('/:id', async (req, res) => {
@@ -26,7 +26,7 @@ router.get('/:id', async (req, res) => {
   } catch (err) {
     res.status(500).json(err.message);
   }
-});
+}); // done
 
 // create new product
 router.post('/', async (req, res) => {
@@ -107,8 +107,18 @@ router.put('/:id', (req, res) => {
     });
 });
 
-router.delete('/:id', (req, res) => {
+router.delete('/:id', async (req, res) => {
+  try {
+    await Product.destroy({
+      where: {
+        id: req.params.id
+      }
+    })
+    res.status(200).end()
+  } catch (err) {
+    res.status(500).json(err.message);
+  }
   // delete one product by its `id` value
-});
+}); // done
 
 module.exports = router;

@@ -16,15 +16,14 @@ router.get('/:id', async (req, res) => {
   try {
     const category = await Category.findByPk(req.params.id, {
       include: {
-        model: "category_name"
+        model: Product
       }
     })
+    res.status(201).json(category);
   } catch (err) {
     res.status(500).json(err.message);
   }
-  // find one category by its `id` value
-  // be sure to include its associated Products
-});
+}); // done
 
 router.post('/', async (req, res) => {
   try {
@@ -59,6 +58,6 @@ router.delete('/:id', async (req, res) => {
   } catch (err) {
     res.status(500).json(err.message);
   }
-});
+}); // done
 
 module.exports = router;
