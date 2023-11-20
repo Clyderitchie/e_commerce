@@ -32,20 +32,30 @@ router.post('/', async (req, res) => {
   } catch (err) {
     res.status(500).json(err.message);
   }
-});
+}); // need to ask one this request 
 
 router.put('/:id', async (req, res) => {
   try {
-    const updateCategory = await Category.update({
-      where: {
-        id: req.params.id
-      }
-    })
+    const updateCategory = await Category.update(
+      { name: req.body.name },
+      { where: { id: req.params.id } }
+    )
+
+    if (updateCategory[0] === 0) {
+      // If no rows were affected, return a 404 status code
+      return res.status(404).json({ error: 'Category not found' });
+    }
+
+    const updatedCategory = await Category.findOne({
+      where: { id: req.params.id }
+    });
+
+    res.status(200).json(updatedCategory);
   } catch (err) {
     res.status(500).json(err.message);
   }
   // update a category by its `id` value
-});
+}); // need to work on possibly need help with
 
 router.delete('/:id', async (req, res) => {
   try {

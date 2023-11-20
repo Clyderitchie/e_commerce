@@ -26,13 +26,19 @@ router.get('/:id', async(req, res) => {
 }
 });
 
-router.post('/', (req, res) => {
+router.post('/', async (req, res) => {
+  try {
+    const newTag = await Category.create(req.body);
+    res.status(201).json(newTag);
+  } catch (err) {
+    res.status(500).json(err.message);
+  }
   // create a new tag
-});
+}); // need to ask about return value here
 
 router.put('/:id', (req, res) => {
   // update a tag's name by its `id` value
-});
+}); // need to work on possibly need help with
 
 router.delete('/:id', async (req, res) => {
   try {
