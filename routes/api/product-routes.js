@@ -58,7 +58,7 @@ router.post('/', async (req, res) => {
       console.log(err);
       res.status(400).json(err);
     });
-});
+}); // done
 
 // update product
 router.put('/:id', (req, res) => {
@@ -103,7 +103,7 @@ router.put('/:id', (req, res) => {
       // console.log(err);
       res.status(400).json(err);
     });
-});
+}); // done
 
 router.delete('/:id', async (req, res) => {
   try {
