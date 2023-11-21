@@ -10,7 +10,7 @@ router.get('/', async (req, res) => {
 } catch (err) {
     res.status(500).json(err.message);
 }
-});
+}); // done
 
 router.get('/:id', async(req, res) => {
   try {
@@ -24,21 +24,30 @@ router.get('/:id', async(req, res) => {
 } catch (err) {
     res.status(500).json(err.message);
 }
-});
+}); // done
 
 router.post('/', async (req, res) => {
   try {
-    const newTag = await Category.create(req.body);
+    const newTag = await Tag.create(req.body);
     res.status(201).json(newTag);
   } catch (err) {
     res.status(500).json(err.message);
   }
   // create a new tag
-}); // need to ask about return value here
+}); // done
 
-router.put('/:id', (req, res) => {
-  // update a tag's name by its `id` value
-}); // need to work on possibly need help with
+router.put('/:id', async (req, res) => {
+  try {
+    const updateTag = await Tag.update(
+      { tag_name: req.body.tag_name },
+      { where: { id: req.params.id } }
+    )
+    res.status(200).json(updateTag);
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err.message);
+  }
+}); // done
 
 router.delete('/:id', async (req, res) => {
   try {
@@ -54,3 +63,4 @@ router.delete('/:id', async (req, res) => {
 }); // done
 
 module.exports = router;
+    

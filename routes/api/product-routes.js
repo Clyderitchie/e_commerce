@@ -39,7 +39,6 @@ router.post('/', async (req, res) => {
     }
   */
   Product.create(req.body)
-  console.log(Product)
     .then((product) => {
       // if there's product tags, we need to create pairings to bulk create in the ProductTag model
       if (req.body.tagIds.length) {
@@ -53,7 +52,6 @@ router.post('/', async (req, res) => {
       }
       // if no product tags, just respond
       res.status(200).json(product);
-      console.log(product);
     })
     .then((productTagIds) => res.status(200).json(productTagIds))
     .catch((err) => {
