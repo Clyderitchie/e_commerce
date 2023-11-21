@@ -1,6 +1,7 @@
 # e_commerce
 
 ## Video Walkthrough link
+-   https://drive.google.com/file/d/1QVz8zPS9IHh0m2nZOxRSZjnJmy-fF3mI/view
 
 ## Description 
 With using sequelize, mysql2 and express, the application allows a user to build their own models and connect them in a way that works best for them. By doing this it allows the user to have a dynamic and complex e-commerce store that can track the products, categories, and the tags of each products (the price of the product)
